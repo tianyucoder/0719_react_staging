@@ -13,7 +13,7 @@ export default class Search extends Component{
     if(keyWord.trim() === '') return
     //3.发请求
     const URL = `https://api.github.com/search/users?q=${keyWord}`
-    //请求之前更新数据，为了展示loading
+    //请求之前更新数据，为了展示loading。
     updateAppState({
       users:[],
       isFirst:false,

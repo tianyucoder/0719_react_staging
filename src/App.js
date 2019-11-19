@@ -13,9 +13,36 @@ export default class App extends Component{
   }
 
   componentDidMount(){
-    const URL = `https://api.github.com/search/repositories?q=${this.state.keyWord}&sort=stars`
-    //发送ajax请求
-    axios.get(URL)
+    const URL = `https://api.githubb.com/search/repositories?q=${this.state.keyWord}&sort=stars`
+    
+    fetch(URL)
+      .then(function(response) {
+        console.log(response);
+        if(response.statusText != 'OK'){
+          return Promise.reject(new Error('请求资源失败'))
+        }else{
+          return response.json()
+        }
+      })
+      .then((result)=>{
+        console.log(result);
+        let {name,html_url} = result.items[0]
+        this.setState({
+          repoName:name,
+          respoUrl:html_url,
+          isLoading:false
+        })
+      })
+      .catch((reason)=>{
+        console.log(reason);
+        this.setState({
+          isLoading:false,
+          error:reason.message
+        })
+      })
+    
+    //使用axios发送ajax请求
+    /* axios.get(URL)
       .then((value)=>{
         console.log(value);
         let {name,html_url} = value.data.items[0]
@@ -30,7 +57,7 @@ export default class App extends Component{
           isLoading:false,
           error:reason.message
         })
-      })
+      }) */
 
   }
 

@@ -19,7 +19,6 @@ export default class List extends Component{
   }	
 
   deleteComment = (id)=>{
-    //1.获取原状态
     let comments = [...this.state.comments]
     comments = comments.filter((item)=>{
       return item.id !== id

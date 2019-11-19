@@ -4,6 +4,7 @@ import uuid from 'uuid'
 export default class Add extends Component{
 
   add = ()=>{
+    let {addComment} = this.props
     //1.获取用户输入
     let name = this.refs.name.value
     let content = this.content.value
@@ -14,9 +15,7 @@ export default class Add extends Component{
       return
     }
     //3.将输入的数据维护到状态中
-    let {sendCommentObj} = this.props
-    sendCommentObj({id:uuid(),name,content})
-
+    addComment({id:uuid(),name,content})
     //4.清空输入
     this.refs.name.value = ''
     this.content.value = ''

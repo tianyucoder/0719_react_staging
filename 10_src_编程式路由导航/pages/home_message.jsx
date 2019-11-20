@@ -22,6 +22,24 @@ export default class HomeMessage extends Component{
     },1000)
   }
 
+  pushShow = (id)=>{
+    //向浏览器的历史记录中push一个路径
+    this.props.history.push(`/home/message/detail/${id}`)
+  }
+
+  replaceShow = (id)=>{
+    this.props.history.replace(`/home/message/detail/${id}`)
+  }
+
+  back = ()=>{
+    this.props.history.goBack()
+  }
+
+  go = ()=>{
+    this.props.history.goForward()
+  }
+
+
   render(){
     let {messageArr} = this.state
     return (
@@ -32,11 +50,15 @@ export default class HomeMessage extends Component{
               return (
                 <li key={item.id}>
                   <Link to={`/home/message/detail/${item.id}`}>{item.title}</Link>&nbsp;&nbsp;
+                  <button onClick={()=>{this.pushShow(item.id)}}>push查看详情</button>&nbsp;
+                  <button onClick={()=>{this.replaceShow(item.id)}}>replace查看详情</button>
                 </li>
               )
             })
           }
         </ul>
+        <button onClick={this.back}>返回</button>
+        <button onClick={this.go}>前进</button>
         <hr/>
           <Route path="/home/message/detail/:id" component={HomeMessageDetail}/>
       </div>

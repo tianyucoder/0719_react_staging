@@ -1,4 +1,7 @@
 import React,{Component} from 'react'
+import {NavLink,Route,Switch,Redirect} from 'react-router-dom'
+import HomeMessage from './home_message'
+import HomeNews from './home_news'
 
 export default class Home extends Component{
   render(){
@@ -8,33 +11,17 @@ export default class Home extends Component{
               <div>
                 <ul className="nav nav-tabs">
                   <li>
-                    <a className="list-group-item" href="./home-news.html">News</a>
+                    <NavLink className="list-group-item"activeClassName="demo" to="/home/news">News</NavLink>
                   </li>
                   <li>
-                    <a className="list-group-item active" href="./home-message.html">Message</a>
+                    <NavLink className="list-group-item"activeClassName="demo" to="/home/message">Message</NavLink>
                   </li>
                 </ul>
-                <div>
-                  <ul>
-                    <li>
-                      <a href="/home/message/1">message001</a>&nbsp;&nbsp;
-                      <button>push查看</button>&nbsp;&nbsp;
-                      <button>replace查看</button>
-                    </li>
-                    <li>
-                      <a href="/home/message/3">message003</a>&nbsp;&nbsp;
-                      <button>push查看</button>&nbsp;&nbsp;
-                      <button>replace查看</button>
-                    </li>
-                    <li>
-                      <a href="/home/message/5">message005</a>&nbsp;&nbsp;
-                      <button>push查看</button>&nbsp;&nbsp;
-                      <button>replace查看</button>
-                    </li>
-                  </ul>
-                  <button>回退</button>
-                  <hr/>
-                </div>
+                <Switch>
+                  <Route path="/home/news" component={HomeNews}/>
+                  <Route path="/home/message" component={HomeMessage}/>
+                  <Redirect to="/home/news"/>
+                </Switch>
               </div>
           </div>
     )

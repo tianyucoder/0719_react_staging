@@ -1,9 +1,24 @@
 import React,{Component} from 'react'
+import PubSub from 'pubsub-js'
 import Item from '../item/item'
 
 export default class List extends Component{
+  state = {
+    users:[],
+    isFirst:true,
+    isLoading:false,
+    error:''
+  }
+
+  componentDidMount(){
+    //完成消息的订阅
+    PubSub.subscribe('atguigu',(msg,data)=>{
+      this.setState(data)
+    })
+  }
+
   render(){
-    const {users,isFirst,isLoading,error} = this.props
+    const {users,isFirst,isLoading,error} = this.state
     if(isFirst){
         return <h2>输入关键字以搜索</h2>
     }else if(isLoading){

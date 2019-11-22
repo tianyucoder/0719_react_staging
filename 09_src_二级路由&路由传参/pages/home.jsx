@@ -4,6 +4,9 @@ import HomeMessage from './home_message'
 import HomeNews from './home_news'
 
 export default class Home extends Component{
+  componentDidMount(){
+    console.log('--Home组件挂载了--');
+  }
   render(){
     return (
         <div>

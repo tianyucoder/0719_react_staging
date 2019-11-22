@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Button,message} from 'antd'
-import '../node_modules/antd/dist/antd.css'
+import 'antd/dist/antd.css'
 
 export default class App extends Component{
 

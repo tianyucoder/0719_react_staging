@@ -20,6 +20,7 @@ export default class HomeMessage extends Component{
         ]
       })
     },1000)
+    console.log('--HomeMessage组件挂载了--');
   }
 
   render(){
